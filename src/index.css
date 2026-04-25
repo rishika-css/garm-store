@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom CSS Variables ───────────────────────────────────────── */
+:root {
+  --garm-black: #0A0A0A;
+  --garm-white: #F5F3EF;
+  --garm-cream: #EDE9E2;
+  --garm-orange: #FF4D00;
+  --garm-gray: #8A8A8A;
+  --garm-light-gray: #D9D5CE;
+  --ticker-speed: 30s;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--garm-white);
+  color: var(--garm-black);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar Styling ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--garm-cream); }
+::-webkit-scrollbar-thumb { background: var(--garm-black); }
+
+/* ─── Marquee / Ticker Animation ─────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--ticker-speed) linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes breathing-text {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; color: var(--garm-orange); }
+}
+
+.animate-breathing {
+  display: inline-block;
+  animation: breathing-text 4s ease-in-out infinite;
+}
+
+/* ─── Fade-in on mount ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.fade-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.fade-up-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.fade-up-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+/* ─── Image hover zoom ───────────────────────────────────────────── */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ─── Button styles ──────────────────────────────────────────────── */
+.btn-primary {
+  @apply bg-garm-black text-garm-white px-6 py-3 text-xs tracking-widest uppercase font-medium transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-garm-orange;
+}
+
+.btn-outline {
+  @apply border border-garm-black text-garm-black px-6 py-3 text-xs tracking-widest uppercase font-medium transition-all duration-300;
+}
+
+.btn-outline:hover {
+  @apply bg-garm-black text-garm-white;
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────── */
+.heading-xl {
+  @apply text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter leading-none;
+}
+
+.heading-lg {
+  @apply text-2xl md:text-4xl font-bold tracking-tight leading-tight;
+}
+
+.label-sm {
+  @apply text-xs tracking-widest uppercase font-medium;
+}
+
+/* ─── Product card ───────────────────────────────────────────────── */
+.product-card {
+  @apply relative cursor-pointer;
+}
+
+.product-card .card-info {
+  @apply flex justify-between items-center pt-2 pb-1;
+}
+
+/* ─── Filter pill ────────────────────────────────────────────────── */
+.filter-pill {
+  @apply px-4 py-1.5 text-xs tracking-widest uppercase border border-garm-light-gray cursor-pointer transition-all duration-200 whitespace-nowrap;
+}
+
+.filter-pill.active,
+.filter-pill:hover {
+  @apply bg-garm-black text-garm-white border-garm-black;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────── */
+.divider {
+  @apply border-t border-garm-light-gray;
+}
+
+/* ─── WooCommerce loading shimmer ────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--garm-cream) 25%, var(--garm-light-gray) 50%, var(--garm-cream) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── WE DO Scroll-driven Section ────────────────────────────────── */
+.wedo-section {
+  position: relative;
+  background-color: var(--garm-white);
+}
+
+.wedo-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wedo-header {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--garm-black);
+  position: absolute;
+  top: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.wedo-cylinder {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wedo-cylinder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.wedo-service-item {
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.15;
+  will-change: transform, opacity;
+  user-select: none;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  -webkit-text-stroke: 2px currentColor;
+  paint-order: stroke fill;
+}
+
+/* ─── Scroll Progress Bar — "Freshly Baked" style ────────────────── */
+.scroll-bar-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  pointer-events: auto;
+}
+
+.scroll-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: clamp(340px, 50vw, 560px);
+  height: 48px;
+  border-radius: 9999px;
+  background: var(--garm-white);
+  overflow: hidden;
+  border: 1.5px solid var(--garm-light-gray);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.scroll-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #C8FF00;
+  transition: width 0.3s ease-out;
+  z-index: 0;
+}
+
+.scroll-bar-brand {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.scroll-bar-brand-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--garm-black);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.scroll-bar-symbol {
+  font-size: 0.55rem;
+  vertical-align: super;
+  margin: 0 0.5px;
+}
+
+.scroll-bar-menu {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--garm-black);
+  background: transparent;
+  border: none;
+  border-left: 1.5px solid var(--garm-light-gray);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.scroll-bar-menu:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
