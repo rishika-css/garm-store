@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/garm-store/static/css/main.e5a7a340.css",
+    "main.js": "/garm-store/static/js/main.11d1543a.js",
+    "index.html": "/garm-store/index.html",
+    "main.e5a7a340.css.map": "/garm-store/static/css/main.e5a7a340.css.map",
+    "main.11d1543a.js.map": "/garm-store/static/js/main.11d1543a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5a7a340.css",
+    "static/js/main.11d1543a.js"
+  ]
+}
