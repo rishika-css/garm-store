@@ -19,7 +19,7 @@ import NotFoundPage        from './pages/NotFoundPage';
 export default function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/garm-store">
         <Routes>
           {/* All pages share the same Layout (AnnouncementBar + Navbar + Footer + CartDrawer) */}
           <Route element={<Layout />}>
